@@ -13,14 +13,14 @@ namespace Online_BookStore.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Write()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Shelf()
         {
             ViewBag.Message = "Your contact page.";
 
