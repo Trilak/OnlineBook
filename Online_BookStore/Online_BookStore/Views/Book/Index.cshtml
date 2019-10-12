@@ -39,9 +39,9 @@ https://templatemo.com/tm-539-simple-house
                         </div>
                         <nav class="col-md-6 col-12 tm-nav">
                             <ul class="tm-nav-ul">
-                                <li class="tm-nav-li">@Html.ActionLink("Home", "Index", "Home", new { @class = "tm-nav-link" })</li>
-                                <li class="tm-nav-li">@Html.ActionLink("Write", "Write", "Home", new { @class = "tm-nav-link" })</li>
-                                <li class="tm-nav-li">@Html.ActionLink("Shelf", "Shelf", "Home", new { @class = "tm-nav-link" })</li>
+                                <li class="tm-nav-li">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "tm-nav-link" })</li>
+                                <li class="tm-nav-li">@Html.ActionLink("Write", "Index", "Book", new { @class = "tm-nav-link" })</li>
+                                <li class="tm-nav-li">@Html.ActionLink("Shelf", "Shelf", "Home", null, new { @class = "tm-nav-link" })</li>
                             </ul>
                         </nav>
                     </div>
@@ -64,26 +64,27 @@ https://templatemo.com/tm-539-simple-house
             </div>
 
             <!-- Gallery -->
-            <div class="row tm-gallery">
+            <div class="row tm-gallery">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <!-- gallery page 1 -->
             @foreach (var item in Model)
             {
-                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-                    <figure>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                        <img src="~/Content/images/gallery/01.jpg" alt="Image" class="img-fluid tm-gallery-img" />
-                        <figcaption>     
-                            @Html.DisplayFor(modelItem => item.Image)
-                            <h4 class="tm-gallery-title">@Html.DisplayFor(modelItem => item.Title)</h4>                         
-                            <p class="tm-gallery-description">  @Html.DisplayFor(modelItem => item.Category)</p>
-                            <p class="tm-gallery-price">@Html.DisplayFor(modelItem => item.Price) ฿</p>                                                  
-                        </figcaption>                   
-                    </figure>
-                </article>
-             }          
-               <!-- gallery page 1 -->
-            </div>
+               
+                    <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item" >
+                        <figure>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                            <img src=@Url.Content("~/Content/images/gallery/"+@Html.DisplayFor(modelItem => item.Image)) alt="Image" class="img-fluid tm-gallery-img" />
+                            <figcaption>
+                                <h4 class="tm-gallery-title">@Html.DisplayFor(modelItem => item.Title)</h4>
+                                <p class="tm-gallery-description">  @Html.DisplayFor(modelItem => item.Category)</p>
+                                <p class="tm-gallery-price">@Html.DisplayFor(modelItem => item.Price) ฿</p>
+                            </figcaption>
+                        </figure>
+                    </article>
+                    }
+                    <!-- gallery page 1 -->
+                </div>
+
         </main>
 
 
