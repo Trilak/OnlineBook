@@ -1,51 +1,108 @@
 ﻿@model IEnumerable<Online_BookStore.Models.Book>
-
 @{
     ViewBag.Title = "Index";
 }
+<!DOCTYPE html>
+<html>
 
-<h2>Index</h2>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Simple House Template</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" />
+    <link href="~/Content/css/templatemo-style.css" rel="stylesheet" />
+</head>
+<!--
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
-        <th></th>
-    </tr>
+Simple House
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Image)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+https://templatemo.com/tm-539-simple-house
 
-</table>
+-->
+<body>
+
+    <div class="container">
+        <!-- Top box -->
+        <!-- Logo & Site Name -->
+        <div class="placeholder">
+
+            <div class="parallax-window" data-parallax="scroll" data-image-src="Content/wallpaper.jpg">
+                <div class="tm-header">
+                    <div class="row tm-header-inner">
+                        <div class="col-md-6 col-12">
+                            <img src="~/Content/images/simple-house-logo.png" alt="Logo" class="tm-site-logo" />
+                            <div class="tm-site-text-box">
+                                <h1 class="tm-site-title">Simple House</h1>
+                                <h6 class="tm-site-description">new restaurant template</h6>
+                            </div>
+                        </div>
+                        <nav class="col-md-6 col-12 tm-nav">
+                            <ul class="tm-nav-ul">
+                                <li class="tm-nav-li">@Html.ActionLink("Home", "Index", "Home", new { @class = "tm-nav-link" })</li>
+                                <li class="tm-nav-li">@Html.ActionLink("Write", "Write", "Home", new { @class = "tm-nav-link" })</li>
+                                <li class="tm-nav-li">@Html.ActionLink("Shelf", "Shelf", "Home", new { @class = "tm-nav-link" })</li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <main>
+            <header class="row tm-welcome-section">
+                <h2 class="col-12 text-center tm-section-title">Welcome to Simple House</h2>
+                <p class="col-12 text-center">Total 3 HTML pages are included in this template. Header image has a parallax effect. You can feel free to download, edit and use this TemplateMo layout for your commercial or non-commercial websites.</p>
+            </header>
+
+            <div class="tm-paging-links">
+                <nav>
+                    <ul>
+                        @Html.ActionLink("+ Books", "Create")
+                    </ul>
+                </nav>
+            </div>
+
+            <!-- Gallery -->
+            <div class="row tm-gallery">
+                <!-- gallery page 1 -->
+            @foreach (var item in Model)
+            {
+                <article class="col-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
+                    <figure>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        <img src="~/Content/images/gallery/01.jpg" alt="Image" class="img-fluid tm-gallery-img" />
+                        <figcaption>     
+                            @Html.DisplayFor(modelItem => item.Image)
+                            <h4 class="tm-gallery-title">@Html.DisplayFor(modelItem => item.Title)</h4>                         
+                            <p class="tm-gallery-description">  @Html.DisplayFor(modelItem => item.Category)</p>
+                            <p class="tm-gallery-price">@Html.DisplayFor(modelItem => item.Price) ฿</p>                                                  
+                        </figcaption>                   
+                    </figure>
+                </article>
+             }          
+               <!-- gallery page 1 -->
+            </div>
+        </main>
+
+
+    </div>
+    <script src="~/Content/js/jquery.min.js"></script>
+    <script src="~/Content/js/parallax.min.js"></script>
+    <script>
+		$(document).ready(function(){
+			// Handle click on paging links
+			$('.tm-paging-link').click(function(e){
+				e.preventDefault();
+
+				var page = $(this).text().toLowerCase();
+				$('.tm-gallery-page').addClass('hidden');
+				$('#tm-gallery-page-' + page).removeClass('hidden');
+				$('.tm-paging-link').removeClass('active');
+				$(this).addClass("active");
+			});
+		});
+    </script>
+</body>
+</html>
